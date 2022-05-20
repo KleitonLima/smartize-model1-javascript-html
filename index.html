@@ -9,6 +9,14 @@
   </head>
   <body>
     <div class="Home">
+      <h2>Pesquisar produtos:</h2>
+      <div class="produto-esolhido">
+        <div id="produto-escolhido-input">
+          <input type="number" id="idProduto" placeholder="Digite o ID do produto e clique em 'Selecionar'" />
+          <button id="idProdutoButton" onclick="findByIdProdutos()">SELECIONAR</button>
+        </div>
+        <div id="produtoEscolhido"></div>
+      </div>
       <div class="Home_container">
         <div class="ProdutoLista" id="produtoList"></div>
       </div>

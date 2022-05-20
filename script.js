@@ -12,6 +12,7 @@ async function findAllProdutos() {
       <div class="ProdutoListaItem__tipo">${element.tipo}</div>
       <div class="ProdutoListaItem__marca">${element.marca}</div>
       <div class="ProdutoListaItem__modelo">${element.modelo}</div>
+      <div class='ProdutoListaItem__preco'>R$ ${element.preco}</div>
   </div>`;
   });
 }
