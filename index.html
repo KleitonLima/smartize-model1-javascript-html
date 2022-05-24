@@ -4,20 +4,34 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="" />
+    <link rel="stylesheet" href="./assets/style.css" />
     <title>Smartize</title>
   </head>
   <body>
     <div class="Home">
-      <h2>Pesquisar produtos:</h2>
-      <div class="produto-esolhido">
-        <div id="produto-escolhido-input">
-          <input type="number" id="idProduto" placeholder="Digite o ID do produto e clique em 'Selecionar'" />
-          <button id="idProdutoButton" onclick="findByIdProdutos()">SELECIONAR</button>
+      <div class="Home__header Header">
+        <div class="row">
+          <div class="Header__logo Logo">
+            <img src="./assets/images/Logo sem fundo.png" alt="Logo Loja Smartize" class="Logo__icone" />
+          </div>
+          <div class="Logo__titulo">Loja Smartize</div>
+          <div class="Header__opcoes Opcoes">
+            <div class="Opcoes__sacola Sacola">
+              <img src="https://cdn-icons-png.flaticon.com/512/2649/2649359.png" width="50px" class="Sacola__icone" alt="Sacola de compras" />
+            </div>
+          </div>
         </div>
-        <div id="produtoEscolhido"></div>
       </div>
-      <div class="Home_container">
+      <h2>Pesquisar produtos:</h2>
+      <div class="produto-escolhido">
+        <div id="produto-escolhido-input">
+          <input type="number" id="inputIdProduto" placeholder="Digite o ID do produto e clique em 'Selecionar'" />
+          <button id="idProdutoButton" onclick="encontrarProdutoId()">SELECIONAR</button>
+          <div id="produtoEscolhido"></div>
+        </div>
+      </div>
+      <h2>Produtos disponíveis:</h2>
+      <div class="Home__container">
         <div class="ProdutoLista" id="produtoList"></div>
       </div>
     </div>
