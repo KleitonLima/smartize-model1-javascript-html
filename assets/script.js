@@ -1,8 +1,11 @@
 const baseUrl = "http://localhost:3001";
+let listaProdutos = [];
 
 const buscarProdutos = async () => {
   const res = await fetch(`${baseUrl}/produtos/listar-produtos`);
   const produtos = await res.json();
+
+  listaProdutos = produtos;
 
   return produtos;
 };
@@ -110,9 +113,21 @@ imprimirProdutos();
 const encontrarProdutoId = async () => {
   document.getElementById("produtoEscolhido").innerText = "";
 
-  const id = document.getElementById("inputIdProduto").value;
+  const tipo = document.getElementById("inputBuscaTipo").value;
 
-  const produto = await buscarProdutoId(id);
+  // const {_id} = listaProdutos.find(elem => elem.tipo === tipo);
+  const produtoEscolhido = listaProdutos.find(elem => elem.tipo === tipo);
+
+  if (!produtoEscolhido) {
+    const mensagemErro = document.createElement("p");
+    mensagemErro.id = "mensagemErro";
+    mensagemErro.classList.add("MensagemErro");
+    mensagemErro.innerText = "Nenhum produto encontrado!";
+
+    document.getElementById("produtoEscolhido").appendChild(mensagemErro);
+  }
+
+  const produto = await buscarProdutoId(produtoEscolhido._id);
 
   if (!produto) {
     const mensagemErro = document.createElement("p");
