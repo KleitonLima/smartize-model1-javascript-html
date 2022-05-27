@@ -110,14 +110,14 @@ html {
   padding: 2rem;
 }
 
-#inputIdProduto {
+#inputBuscaTipo {
   padding: 0.5rem;
   width: 315px;
   border: none;
   border-radius: 0.2rem;
 }
 
-#idProdutoButton {
+#tipoProdutoButton {
   background-color: transparent;
   border: 2px solid #9400d3;
   padding: 0.4rem;
@@ -131,7 +131,7 @@ html {
   font-size: 1rem;
 }
 
-#idProdutoButton:hover {
+#tipoProdutoButton:hover {
   background-color: #9400d3;
   color: #ffffff;
 }
