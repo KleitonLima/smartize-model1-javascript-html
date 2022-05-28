@@ -93,7 +93,7 @@ const imprimirProdutos = async () => {
   const produtos = await buscarProdutos();
 
   produtos.forEach((element) => {
-    document.getElementById("produtoList").insertAdjacentHTML(
+    document.getElementById("produtoLista").insertAdjacentHTML(
       "beforeend",
       `<div class="ProdutoListaItem">
         <img class="ProdutoListaItem__foto" src="${element.foto}" alt="Foto do ${element.modelo} " />
@@ -116,7 +116,7 @@ const encontrarProdutoId = async () => {
   const tipo = document.getElementById("inputBuscaTipo").value;
 
   // const {_id} = listaProdutos.find(elem => elem.tipo === tipo);
-  const produtoEscolhido = listaProdutos.find(elem => elem.tipo === tipo);
+  const produtoEscolhido = listaProdutos.find((elem) => elem.tipo == tipo);
 
   if (!produtoEscolhido) {
     const mensagemErro = document.createElement("p");
@@ -152,4 +152,38 @@ const encontrarProdutoId = async () => {
     </div>
   </div>`;
   }
+};
+
+const mostrarModalCadastro = () => {
+  document.getElementById("fundoModal").style.display = "flex";
+};
+const esconderModalCadastro = () => {
+  document.getElementById("fundoModal").style.display = "none";
+};
+const cadastrarProduto = async () => {
+  const tipo = document.getElementById("inputTipo").value,
+    marca = document.getElementById("inputMarca").value,
+    modelo = document.getElementById("inputModelo").value,
+    descricao = document.getElementById("inputDescricao").value,
+    cor = document.getElementById("inputCor").value,
+    condicao = document.getElementById("inputCondicao").value,
+    foto = document.getElementById("inputFoto").value,
+    preco = document.getElementById("inputPreco").value,
+    garantia = document.getElementById("inputGarantia").value;
+
+  const produto = await criarProduto(tipo, marca, modelo, descricao, cor, condicao, foto, preco, garantia);
+
+  document.getElementById("produtoLista").insertAdjacentHTML(
+    "beforeend",
+    `<div class="ProdutoListaItem">
+    <img class="ProdutoListaItem__foto" src="${produto.foto}" alt="Foto do ${produto.modelo} " />
+    <div>
+      <div class="ProdutoListaItem__tipo">${produto.tipo}</div>
+      <div class="ProdutoListaItem__marca">${produto.marca}</div>
+      <div class="ProdutoListaItem__modelo">${produto.modelo}</div>
+      <div class="ProdutoListaItem__preco">R$ ${produto.preco.toFixed(2)}</div>
+     </div>
+  </div>`
+  );
+  esconderModalCadastro()
 };

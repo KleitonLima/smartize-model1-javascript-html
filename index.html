@@ -22,17 +22,45 @@
           </div>
         </div>
       </header>
+
+      <div class="NovoProduto__container">
+        <button class="botao-padrao" id="botao-cadastrar" onclick="mostrarModalCadastro()">CADASTRAR PRODUTO</button>
+      </div>
+
       <h2>Pesquisar produtos:</h2>
       <div class="produto-escolhido">
         <div id="produto-escolhido-input">
           <input id="inputBuscaTipo" placeholder="Digite o tipo do produto e clique em 'Selecionar'" />
-          <button id="tipoProdutoButton" onclick="encontrarProdutoId()">SELECIONAR</button>
+          <button class="botao-padrao" id="tipoProdutoButton" onclick="encontrarProdutoId()">SELECIONAR</button>
           <div id="produtoEscolhido"></div>
         </div>
       </div>
       <h2>Produtos disponíveis:</h2>
       <div class="Home__container">
-        <div class="ProdutoLista" id="produtoList"></div>
+        <div class="ProdutoLista" id="produtoLista"></div>
+      </div>
+
+      <div class="fundo-modal" id="fundoModal">
+        <div class="modal">
+          <div class="header-modal">
+            <h2>CADASTRANDO PRODUTO</h2>
+            <span onclick="esconderModalCadastro()">x</span>
+          </div>
+            <div class="body-modal">
+              <input id="inputTipo" placeholder="Tipo do produto" />
+              <input id="inputMarca" placeholder="Marca do produto" />
+              <input id="inputModelo" placeholder="Modelo do produto" />
+              <input id="inputDescricao" placeholder="Descrição do produto" />
+              <input id="inputCor" placeholder="Cor do produto" />
+              <input id="inputCondicao" placeholder="Condição do produto" />
+              <input id="inputFoto" placeholder="Link da foto do produto" />
+              <input id="inputPreco" type="number" placeholder="Preço do produto" />
+              <input id="inputGarantia" placeholder="Tempo de garantia" />
+              <div>
+                <button class="botao-modal" onclick="cadastrarProduto()">CADASTRAR</button>
+              </div>
+            </div>
+        </div>
       </div>
     </div>
     <script src="./assets/script.js"></script>
