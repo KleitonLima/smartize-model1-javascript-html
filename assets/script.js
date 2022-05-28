@@ -83,13 +83,14 @@ const excluirProduto = async (id) => {
   });
 
   if (res.status === 204) {
-    return "Produto excluido com sucesso!";
+    return true;
   } else {
-    return "Produto não encontrado!";
+    return false;
   }
 };
 
 const imprimirProdutos = async () => {
+  document.getElementById("produtoLista").innerHTML = "";
   const produtos = await buscarProdutos();
 
   produtos.forEach((element) => {
@@ -102,6 +103,10 @@ const imprimirProdutos = async () => {
           <div class="ProdutoListaItem__marca">${element.marca}</div>
           <div class="ProdutoListaItem__modelo">${element.modelo}</div>
           <div class="ProdutoListaItem__preco">R$ ${element.preco.toFixed(2)}</div>
+          <div>
+            <button class="botao-editar">EDITAR</button>
+            <button class="botao-deletar" onclick="mostrarModalDeletar('${element._id}')">DELETAR</button>
+          </div>
          </div>
       </div>`
     );
@@ -149,16 +154,21 @@ const encontrarProdutoId = async () => {
       <div class="ProdutoListaItem__condicao">${produto.condicao}</div>
       <div class="ProdutoListaItem__garantia">${produto.garantia}</div>
       <div class="ProdutoListaItem__descricao">${produto.descricao}</div>
+      <div>
+        <button class="botao-editar" onclick="">EDITAR</button>
+        <button class="botao-deletar" onclick="mostrarModalDeletar('${produto._id}')">DELETAR</button>
+      </div>
+
     </div>
   </div>`;
   }
 };
 
 const mostrarModalCadastro = () => {
-  document.getElementById("fundoModal").style.display = "flex";
+  document.getElementById("fundoModalCadastrar").style.display = "flex";
 };
 const esconderModalCadastro = () => {
-  document.getElementById("fundoModal").style.display = "none";
+  document.getElementById("fundoModalCadastrar").style.display = "none";
 };
 const cadastrarProduto = async () => {
   const tipo = document.getElementById("inputTipo").value,
@@ -182,8 +192,34 @@ const cadastrarProduto = async () => {
       <div class="ProdutoListaItem__marca">${produto.marca}</div>
       <div class="ProdutoListaItem__modelo">${produto.modelo}</div>
       <div class="ProdutoListaItem__preco">R$ ${produto.preco.toFixed(2)}</div>
+      <div>
+        <button class="botao-editar">EDITAR</button>
+        <button class="botao-deletar" onclick="mostrarModalDeletar('${produto._id}')">DELETAR</button>
+      </div>
+
      </div>
   </div>`
   );
-  esconderModalCadastro()
+  esconderModalCadastro();
+};
+
+const mostrarModalDeletar = (id) => {
+  document.getElementById("fundoModalDeletar").style.display = "flex";
+
+  const botaoConfirmarExlusao = document.getElementById("botaoConfirmarExclusao");
+
+  botaoConfirmarExlusao.addEventListener("click", () => {
+    const excluir = excluirProduto(id);
+
+    if (excluir) {
+      alert('Produto deletado')
+    } else {
+      alert('Produto não encontrado')
+    }
+    esconderModalDeletar();
+    imprimirProdutos();
+  });
+};
+const esconderModalDeletar = () => {
+  document.getElementById("fundoModalDeletar").style.display = "none";
 };

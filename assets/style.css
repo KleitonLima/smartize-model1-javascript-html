@@ -112,7 +112,9 @@ html {
   border-radius: 0.2rem;
 }
 
-.botao-padrao {
+.botao-padrao,
+.botao-editar,
+.botao-deletar {
   background-color: transparent;
   border: 2px solid #9400d3;
   padding: 0.4rem;
@@ -126,12 +128,24 @@ html {
   font-size: 1rem;
 }
 
-.botao-padrao:hover {
+.botao-padrao:hover,
+.botao-editar:hover {
   background-color: #9400d3;
   color: #ffffff;
 }
-#botao-cadastrar {
+.botao-deletar:hover {
+  background-color: #ff0000;
+  color: #ffffff;
+}
+#botao-cadastrar,
+.botao-editar,
+.botao-deletar {
   width: auto;
+}
+.botao-deletar,
+.botao-nao {
+  color: #ff0000;
+  border-color: #ff0000;
 }
 
 .NovoProduto__container {

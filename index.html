@@ -40,7 +40,7 @@
         <div class="ProdutoLista" id="produtoLista"></div>
       </div>
 
-      <div class="fundo-modal" id="fundoModal">
+      <div class="fundo-modal" id="fundoModalCadastrar">
         <div class="modal">
           <div class="header-modal">
             <h2>CADASTRANDO PRODUTO</h2>
@@ -50,7 +50,7 @@
               <input id="inputTipo" placeholder="Tipo do produto" />
               <input id="inputMarca" placeholder="Marca do produto" />
               <input id="inputModelo" placeholder="Modelo do produto" />
-              <input id="inputDescricao" placeholder="Descrição do produto" />
+              <textarea id="inputDescricao" placeholder="Descrição do produto" rows="3"></textarea>
               <input id="inputCor" placeholder="Cor do produto" />
               <input id="inputCondicao" placeholder="Condição do produto" />
               <input id="inputFoto" placeholder="Link da foto do produto" />
@@ -60,6 +60,18 @@
                 <button class="botao-modal" onclick="cadastrarProduto()">CADASTRAR</button>
               </div>
             </div>
+        </div>
+      </div>
+      <div class="fundo-modal" id="fundoModalDeletar">
+        <div class="modal">
+          <div class="header-modal">
+            <h2>DESEJAR DELETAR O PRODUTO?</h2>
+          </div>
+          <span>Produto escolhido</span>
+          <div class="body-modal">
+            <button class="botao-sim" id="botaoConfirmarExclusao" onclick="excluirProduto()">SIM</button>
+            <button class="botao-nao" onclick="esconderModalDeletar()">NÂO</button>
+          </div>
         </div>
       </div>
     </div>
