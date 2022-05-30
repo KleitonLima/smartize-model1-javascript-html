@@ -46,22 +46,47 @@
             <h2>CADASTRANDO PRODUTO</h2>
             <span onclick="esconderModalCadastro()">x</span>
           </div>
-            <div class="body-modal">
-              <input id="inputTipo" placeholder="Tipo do produto" />
-              <input id="inputMarca" placeholder="Marca do produto" />
-              <input id="inputModelo" placeholder="Modelo do produto" />
-              <textarea id="inputDescricao" placeholder="Descrição do produto" rows="3"></textarea>
-              <input id="inputCor" placeholder="Cor do produto" />
-              <input id="inputCondicao" placeholder="Condição do produto" />
-              <input id="inputFoto" placeholder="Link da foto do produto" />
-              <input id="inputPreco" type="number" placeholder="Preço do produto" />
-              <input id="inputGarantia" placeholder="Tempo de garantia" />
-              <div>
-                <button class="botao-modal" onclick="cadastrarProduto()">CADASTRAR</button>
-              </div>
+          <div class="body-modal">
+            <input id="inputTipo" placeholder="Tipo do produto" />
+            <input id="inputMarca" placeholder="Marca do produto" />
+            <input id="inputModelo" placeholder="Modelo do produto" />
+            <textarea id="inputDescricao" placeholder="Descrição do produto" rows="3"></textarea>
+            <input id="inputCor" placeholder="Cor do produto" />
+            <input id="inputCondicao" placeholder="Condição do produto" />
+            <input id="inputFoto" placeholder="Link da foto do produto" />
+            <input id="inputPreco" type="number" placeholder="Preço do produto" />
+            <input id="inputGarantia" placeholder="Tempo de garantia" />
+            <div>
+              <button class="botao-modal" onclick="cadastrarProduto()">CADASTRAR</button>
             </div>
+          </div>
         </div>
       </div>
+
+      <div class="fundo-modal" id="fundoModalEditar">
+        <div class="modal">
+          <div class="header-modal">
+            <h2>ATUALIZAR PRODUTO</h2>
+            <span onclick="esconderModalEditar()">x</span>
+          </div>
+          <div class="body-modal">
+            <input id="inputTipoEdicao" placeholder="Tipo do produto" />
+            <input id="inputMarcaEdicao" placeholder="Marca do produto" />
+            <input id="inputModeloEdicao" placeholder="Modelo do produto" />
+            <textarea id="inputDescricaoEdicao" placeholder="Descrição do produto" rows="3"></textarea>
+            <input id="inputCorEdicao" placeholder="Cor do produto" />
+            <input id="inputCondicaoEdicao" placeholder="Condição do produto" />
+            <input id="inputFotoEdicao" placeholder="Link da foto do produto" />
+            <input id="inputPrecoEdicao" type="number" placeholder="Preço do produto" />
+            <input id="inputGarantiaEdicao" placeholder="Tempo de garantia" />
+            <div>
+              <button class="botao-modal" id="botaoSalvarEdicao">SALVAR</button>
+              <button class="botao-modal" onclick="esconderModalEditar()">CANCELAR</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="fundo-modal" id="fundoModalDeletar">
         <div class="modal">
           <div class="header-modal">
@@ -69,11 +94,17 @@
           </div>
           <span>Produto escolhido</span>
           <div class="body-modal">
-            <button class="botao-sim" id="botaoConfirmarExclusao" onclick="excluirProduto()">SIM</button>
+            <button class="botao-sim" id="botaoConfirmarExclusao">SIM</button>
             <button class="botao-nao" onclick="esconderModalDeletar()">NÂO</button>
           </div>
         </div>
       </div>
+
+      <div class="notification" id="notification">
+        <span id="notificationSpan"></span>
+        <p id="notificationP"></p>
+      </div>
+
     </div>
     <script src="./assets/script.js"></script>
   </body>
