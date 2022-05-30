@@ -118,7 +118,7 @@ imprimirProdutos();
 const encontrarProdutoId = async () => {
   document.getElementById("produtoEscolhido").innerText = "";
 
-  const tipo = document.getElementById("inputBuscaTipo").value;
+  const tipo = document.getElementById("inputSearchTipo").value;
 
   // const {_id} = listaProdutos.find(elem => elem.tipo === tipo);
   const produtoEscolhido = listaProdutos.find((elem) => elem.tipo == tipo);
@@ -184,7 +184,9 @@ const cadastrarProduto = async () => {
     garantia = document.getElementById("inputGarantia").value;
 
   const produto = await requisicoes.criarProduto(tipo, marca, modelo, descricao, cor, condicao, foto, preco, garantia);
-
+  console.log(produto)
+  listaProdutos.push(produto);
+  
   if (produto) {
     mostrarNotificacao("sucess", "Produto Cadastrado");
   } else {
