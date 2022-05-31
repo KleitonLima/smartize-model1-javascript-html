@@ -111,6 +111,7 @@ html {
   width: 315px;
   border: none;
   border-radius: 0.2rem;
+  border: 1px solid #3045a5;
 }
 
 .botao-padrao,
