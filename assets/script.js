@@ -138,7 +138,7 @@ const encontrarProdutoId = async () => {
   <div class="ProdutoListaItem">
     <img class="ProdutoListaItem__foto" src="${produto.foto}" alt="Foto do ${produto.modelo} " />
     <div>
-    <div class="ProdutoListaItem__preco">R$ ${produto.preco.toFixed(2)}</div>
+      <div class="ProdutoListaItem__preco">R$ ${produto.preco.toFixed(2)}</div>
       <div class="ProdutoListaItem__tipo">${produto.tipo}</div>
       <div class="ProdutoListaItem__marca">${produto.marca}</div>
       <div class="ProdutoListaItem__modelo">${produto.modelo}</div>
@@ -184,9 +184,8 @@ const cadastrarProduto = async () => {
     garantia = document.getElementById("inputGarantia").value;
 
   const produto = await requisicoes.criarProduto(tipo, marca, modelo, descricao, cor, condicao, foto, preco, garantia);
-  console.log(produto)
   listaProdutos.push(produto);
-  
+
   if (produto) {
     mostrarNotificacao("sucess", "Produto Cadastrado");
   } else {
@@ -218,16 +217,6 @@ const esconderModalEditar = () => {
 };
 
 const mostrarModalEditar = (id) => {
-  document.getElementById("inputTipo").value = "";
-  document.getElementById("inputMarca").value = "";
-  document.getElementById("inputModelo").value = "";
-  document.getElementById("inputDescricao").value = "";
-  document.getElementById("inputCor").value = "";
-  document.getElementById("inputCondicao").value = "";
-  document.getElementById("inputFoto").value = "";
-  document.getElementById("inputPreco").value = "";
-  document.getElementById("inputGarantia").value = "";
-
   document.getElementById("fundoModalEditar").style.display = "flex";
 
   const produto = listaProdutos.find((element) => element._id === id);
@@ -244,7 +233,7 @@ const mostrarModalEditar = (id) => {
 
   const botaoSalvarEdicao = document.getElementById("botaoSalvarEdicao");
 
-  botaoSalvarEdicao.addEventListener("click", async () => {
+  botaoSalvarEdicao.addEventListener("click", async function atualizar() {
     const tipo = document.getElementById("inputTipoEdicao").value,
       marca = document.getElementById("inputMarcaEdicao").value,
       modelo = document.getElementById("inputModeloEdicao").value,
@@ -256,6 +245,14 @@ const mostrarModalEditar = (id) => {
       garantia = document.getElementById("inputGarantiaEdicao").value;
 
     await requisicoes.atualizarProduto(id, tipo, marca, modelo, descricao, cor, condicao, foto, preco, garantia);
+
+    if (botaoSalvarEdicao) {
+      mostrarNotificacao("sucess", "Produto salvo");
+    } else {
+      mostrarNotificacao("error", "Produto não salvo");
+    }
+
+    this.removeEventListener("click", atualizar);
 
     esconderModalEditar();
     imprimirProdutos();
@@ -287,16 +284,17 @@ const mostrarModalDeletar = (id) => {
 const esconderNotificacao = () => {
   document.getElementById("notification").style.display = "none";
 };
+
 const mostrarNotificacao = (tipo, frase) => {
   const notificationSpan = document.getElementById("notificationSpan"),
     notificationP = document.getElementById("notificationP");
 
   if (tipo === "sucess") {
     notificationSpan.innerHTML = "V";
-    notificationSpan.classList = "notificacao-span-sucess";
+    notificationSpan.classList = "notificationSpanSucesso";
   } else if (tipo === "error") {
     notificationSpan.innerHTML = "X";
-    notificationSpan.classList = "notificacao-span-error";
+    notificationSpan.classList = "notificationSpanError";
   }
 
   notificationP.innerText = frase;
