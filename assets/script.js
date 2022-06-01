@@ -120,8 +120,7 @@ const encontrarProdutoId = async () => {
 
   const tipo = document.getElementById("inputSearchTipo").value;
 
-  // const {_id} = listaProdutos.find(elem => elem.tipo === tipo);
-  const produtoEscolhido = listaProdutos.find((elem) => elem.tipo == tipo);
+  const produtoEscolhido = listaProdutos.filter((elem) => elem.tipo == tipo);
 
   if (!produtoEscolhido) {
     const mensagemErro = document.createElement("p");
@@ -132,27 +131,29 @@ const encontrarProdutoId = async () => {
     document.getElementById("produtoEscolhido").appendChild(mensagemErro);
   }
 
-  const produto = await requisicoes.buscarProdutoId(produtoEscolhido._id);
-
-  document.getElementById("produtoEscolhido").innerHTML = `
-  <div class="ProdutoListaItem">
-    <img class="ProdutoListaItem__foto" src="${produto.foto}" alt="Foto do ${produto.modelo} " />
-    <div>
-      <div class="ProdutoListaItem__preco">R$ ${produto.preco.toFixed(2)}</div>
-      <div class="ProdutoListaItem__tipo">${produto.tipo}</div>
-      <div class="ProdutoListaItem__marca">${produto.marca}</div>
-      <div class="ProdutoListaItem__modelo">${produto.modelo}</div>
-      <div class="ProdutoListaItem__cor">${produto.cor}</div>
-      <div class="ProdutoListaItem__condicao">${produto.condicao}</div>
-      <div class="ProdutoListaItem__garantia">${produto.garantia}</div>
-      <div class="ProdutoListaItem__descricao">${produto.descricao}</div>
-      <div>
-        <button class="botao-editar" onclick="mostrarModalEditar('${produto._id}')">EDITAR</button>
-        <button class="botao-deletar" onclick="mostrarModalDeletar('${produto._id}')">DELETAR</button>
-      </div>
-
-    </div>
-  </div>`;
+  produtoEscolhido.forEach((element) => {
+    document.getElementById("produtoEscolhido").insertAdjacentHTML(
+      "beforeend",
+      `<div class="ProdutoListaItem">
+         <img class="ProdutoListaItem__foto" src="${element.foto}" alt="Foto do ${element.modelo} " />
+        <div>
+          <div class="ProdutoListaItem__preco">R$ ${element.preco.toFixed(2)}</div>
+          <div class="ProdutoListaItem__tipo">${element.tipo}</div>
+          <div class="ProdutoListaItem__marca">${element.marca}</div>
+          <div class="ProdutoListaItem__modelo">${element.modelo}</div>
+          <div class="ProdutoListaItem__cor">${element.cor}</div>
+          <div class="ProdutoListaItem__condicao">${element.condicao}</div>
+          <div class="ProdutoListaItem__garantia">${element.garantia}</div>
+          <div class="ProdutoListaItem__descricao">${element.descricao}</div>
+          <div>
+            <button class="botao-editar" onclick="mostrarModalEditar('${element._id}')">EDITAR</button>
+            <button class="botao-deletar" onclick="mostrarModalDeletar('${element._id}')">DELETAR</button>
+          </div>
+        
+        </div>
+      </div>`
+    );
+  });
 };
 
 const esconderModalCadastro = () => {
